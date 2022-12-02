@@ -1,7 +1,4 @@
       *-----------------------
-      * Copyright Contributors to the COBOL Programming Course
-      * SPDX-License-Identifier: CC-BY-4.0
-      *-----------------------
        IDENTIFICATION DIVISION.
       *-----------------------
        PROGRAM-ID.    AOC01A
@@ -13,13 +10,6 @@
        FILE-CONTROL.
            SELECT DATAOUT ASSIGN TO AOCOUT.
            SELECT DATAIN   ASSIGN TO AOCIN.
-      *SELECT clause creates an internal file name
-      *ASSIGN clause creates a name for an external data source,
-      *which is associated with the JCL DDNAME used by the z/OS
-      *e.g. ACCTREC is linked in JCL file CBL0001J to &SYSUID..DATA
-      *where &SYSUID. stands for Your z/OS user id
-      *e.g. if Your user id is Z54321,
-      *the data set used for ACCTREC is Z54321.DATA	
       *-------------
        DATA DIVISION.
       *-------------
@@ -48,11 +38,6 @@
       *
        READ-NEXT-RECORD.
            PERFORM READ-RECORD
-      *     The previous statement is needed before entering the loop.
-      *     Both the loop condition LASTREC = 'Y'
-      *     and the call to WRITE-RECORD depend on READ-RECORD having
-      *     been executed before.
-      *     The loop starts at the next line with PERFORM UNTIL
            PERFORM UNTIL LASTREC = 'Y'
                PERFORM CHECK-RECORD
                PERFORM READ-RECORD
@@ -84,4 +69,3 @@
            MOVE TMAX TO MAX
            WRITE DATA-OUT.
       *
-
